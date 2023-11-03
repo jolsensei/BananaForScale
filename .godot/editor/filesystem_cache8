@@ -1,3 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1699016490
+::res://::1699018065
 icon.svg::CompressedTexture2D::68900144560059741::1699016485::1699016492::1::::<><>::
+main.tscn::PackedScene::2482722175621632024::1699017835::0::1::::<><>::res://DataLoader.gd
+DataLoader.gd::GDScript::-1::1699017491::0::1::::<>HTTPRequest<>::
+::res://images/::1699018116
+test.png::CompressedTexture2D::4129738775098675520::1699018116::1699018262::1::::<><>::

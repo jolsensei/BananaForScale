@@ -6,12 +6,19 @@
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer" node_paths=PackedStringArray("label", "textureRect")]
+script = ExtResource("1_4o7ey")
+sheetRange = "A1:C1000"
+label = NodePath("../Label")
+textureRect = NodePath("../TextureRect")
+
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_right = 1153.0
 offset_bottom = 650.0
 vertical_alignment = 1
 
-[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer" node_paths=PackedStringArray("label")]
-script = ExtResource("1_4o7ey")
-label = NodePath("../Label")
-sheetRange = "A1:C1000"
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 947.0
+offset_top = 289.0
+offset_right = 987.0
+offset_bottom = 329.0
