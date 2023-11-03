@@ -8,6 +8,9 @@
 
 [node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer" node_paths=PackedStringArray("label", "textureRect")]
 script = ExtResource("1_4o7ey")
+sheetId = "1zVFZ3xQmuQNqU3PiH4WDdKjz_7GTsuOBJtiaPRGo2zA"
+tab = "Data"
+key = "AIzaSyDvRTmvPhFprGAtnmDw9Hk_NSkoJpWw_p0"
 sheetRange = "A1:C1000"
 label = NodePath("../Label")
 textureRect = NodePath("../TextureRect")
