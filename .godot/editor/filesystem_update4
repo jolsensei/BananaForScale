@@ -1,2 +1,3 @@
-res://main.tscn
-res://DataLoader.gd
+res://Game/Game.tscn
+res://Resources/Pattern.gdshader
+res://Game/Game.gd

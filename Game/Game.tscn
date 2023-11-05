@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8ejt8ljpm4i2"]
+
+[ext_resource type="Script" path="res://Game/Game.gd" id="1_o81y7"]
+[ext_resource type="Texture2D" uid="uid://ubvttaoqioju" path="res://Game/Ruler/ruler_start.png" id="1_rmxok"]
+[ext_resource type="Texture2D" uid="uid://boebky8i0p1ji" path="res://Resources/pattern.png" id="2_471xc"]
+[ext_resource type="Shader" path="res://Resources/Pattern.gdshader" id="2_d17cw"]
+[ext_resource type="Texture2D" uid="uid://bkqltowo1cwgt" path="res://Game/Ruler/ruler_segment.png" id="3_gvav0"]
+[ext_resource type="FontFile" uid="uid://ryx3n780otuq" path="res://Resources/I-pixel-u.ttf" id="4_2iyi7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ywyt"]
+shader = ExtResource("2_d17cw")
+shader_parameter/direction = Vector2(-1, -1)
+shader_parameter/speed_scale = 0.3
+
+[sub_resource type="LabelSettings" id="LabelSettings_35k0d"]
+font = ExtResource("4_2iyi7")
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_o81y7")
+
+[node name="BG" type="ColorRect" parent="."]
+offset_right = 192.0
+offset_bottom = 108.0
+
+[node name="Pattern" type="TextureRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_4ywyt")
+offset_right = 192.0
+offset_bottom = 108.0
+texture = ExtResource("2_471xc")
+stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(96, 54)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 6.0
+offset_top = 102.0
+offset_right = 24.0
+offset_bottom = 108.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label2" type="Label" parent="."]
+texture_filter = 1
+offset_left = 6.0
+offset_top = 84.0
+offset_right = 24.0
+offset_bottom = 97.0
+text = "000"
+label_settings = SubResource("LabelSettings_35k0d")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_top = 60.0
+offset_right = 192.0
+offset_bottom = 73.0
+text = "HOW MANY BANANAS?"
+label_settings = SubResource("LabelSettings_35k0d")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Ruler" type="Node2D" parent="."]
+position = Vector2(12, 96)
+
+[node name="RulerStart" type="Sprite2D" parent="Ruler"]
+position = Vector2(6, 0)
+texture = ExtResource("1_rmxok")
+offset = Vector2(3, 3)
+
+[node name="RulerSegment" type="Sprite2D" parent="Ruler"]
+texture = ExtResource("3_gvav0")
+offset = Vector2(3, 3)
+
+[node name="Meter" type="Node2D" parent="."]
+position = Vector2(6, 96)
