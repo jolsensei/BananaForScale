@@ -4,6 +4,7 @@ var accumulative_scroll = 0
 var segment_grow = 6
 
 var tween_playing = false
+var last_direction_forward = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,30 +20,30 @@ func _unhandled_input(event):
 		get_tree().quit()
 		
 	if event.is_action_pressed("scroll_up") and !tween_playing:
-		scroll_ruler($Ruler.get_children(), true)
+		scroll_ruler(true)
 			
-	if event.is_action_pressed("scroll_down") and !tween_playing:
-		scroll_ruler($Ruler.get_children(), false)
+	if event.is_action_pressed("scroll_down") and accumulative_scroll > 0 and !tween_playing:
+		scroll_ruler(false)
 
-func scroll_ruler(segments, forward):
+func scroll_ruler(forward):
 
-	var final_position
+	last_direction_forward = forward
+	
+	if accumulative_scroll % 6 == 0 and !forward:
+		delete_ruler_segment()
 
-	#Move each segment in the ruler
-	for segment in segments:
-		if forward:
-#			segment.position.x += segment_grow
-			final_position = segment.position
-			final_position.x += segment_grow
-		else:
-#			segment.position.x -= segment_grow
-			final_position = segment.position
-			final_position.x -= segment_grow
-			
-		var tween = create_tween().set_trans(Tween.TRANS_BACK)
-		tween.tween_property(segment, "position", final_position, 0.3)
-		tween_playing = true
-		tween.connect("finished", tween_finished)
+	var final_position = Vector2(0,0)
+	final_position = $Meter/Ruler.position
+	
+	if forward:
+		final_position.x += segment_grow
+	else:
+		final_position.x -= segment_grow
+	
+	var tween = create_tween().set_trans(Tween.TRANS_BACK)
+	tween.tween_property($Meter/Ruler, "position", final_position, 0.1)
+	tween_playing = true
+	tween.connect("finished", tween_finished)
 
 	if forward:
 		accumulative_scroll += segment_grow
@@ -50,28 +51,22 @@ func scroll_ruler(segments, forward):
 		accumulative_scroll -= segment_grow
 
 	print(accumulative_scroll)
-	#Create if going backwards
-	if accumulative_scroll % 6 == 0 and forward:
-		generate_ruler_segment()
-		
-	#Delete if going backwards
-#	if accumulative_scroll > 0 and accumulative_scroll % 6 == 0 and !forward and !tween_playing:
-#		delete_ruler_segment()
+
 
 func tween_finished():
-	for segment in $Ruler.get_children():
-		if segment.position.x < -6:
-			segment.queue_free()
-			
-	tween_playing = false
+	if accumulative_scroll % 6 == 0 and last_direction_forward:
+		generate_ruler_segment()
 	
+	tween_playing = false
 
 func generate_ruler_segment():
 	var segment = Sprite2D.new()
 	segment.texture = load("res://Game/Ruler/ruler_segment.png")
 	segment.offset = Vector2(3,3)
-	$Ruler.add_child(segment)
+	#The whole ruler is moving, so we need to atach the new segment to the end of the ruler
+	segment.position.x = accumulative_scroll * -1
+	$Meter/Ruler.add_child(segment)
 	
 func delete_ruler_segment():
-	$Ruler.get_children().back().queue_free()
+	$Meter/Ruler.get_children().back().queue_free()
 	

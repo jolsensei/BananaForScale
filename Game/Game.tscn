@@ -36,11 +36,26 @@ stretch_mode = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(96, 54)
 
+[node name="Meter" type="Node2D" parent="."]
+position = Vector2(6, 96)
+
+[node name="Ruler" type="Node2D" parent="Meter"]
+position = Vector2(6, 0)
+
+[node name="RulerStart" type="Sprite2D" parent="Meter/Ruler"]
+position = Vector2(6, 0)
+texture = ExtResource("1_rmxok")
+offset = Vector2(3, 3)
+
+[node name="RulerSegment" type="Sprite2D" parent="Meter/Ruler"]
+texture = ExtResource("3_gvav0")
+offset = Vector2(3, 3)
+
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 6.0
-offset_top = 102.0
+offset_top = 96.0
 offset_right = 24.0
-offset_bottom = 108.0
+offset_bottom = 102.0
 color = Color(0, 0, 0, 1)
 
 [node name="Label2" type="Label" parent="."]
@@ -63,18 +78,3 @@ text = "HOW MANY BANANAS?"
 label_settings = SubResource("LabelSettings_35k0d")
 horizontal_alignment = 1
 vertical_alignment = 2
-
-[node name="Ruler" type="Node2D" parent="."]
-position = Vector2(12, 96)
-
-[node name="RulerStart" type="Sprite2D" parent="Ruler"]
-position = Vector2(6, 0)
-texture = ExtResource("1_rmxok")
-offset = Vector2(3, 3)
-
-[node name="RulerSegment" type="Sprite2D" parent="Ruler"]
-texture = ExtResource("3_gvav0")
-offset = Vector2(3, 3)
-
-[node name="Meter" type="Node2D" parent="."]
-position = Vector2(6, 96)
