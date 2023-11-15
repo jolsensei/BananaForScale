@@ -318,3 +318,5 @@ layout_mode = 2
 texture_normal = SubResource("AtlasTexture_1bbat")
 texture_pressed = SubResource("AtlasTexture_2fyi0")
 texture_hover = SubResource("AtlasTexture_yqnwm")
+
+[connection signal="pressed" from="CenterContainer/Play" to="." method="_on_play_pressed"]

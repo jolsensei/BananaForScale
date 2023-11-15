@@ -8,7 +8,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 		
 
@@ -30,3 +30,7 @@ func _unhandled_input(event):
 
 func tween_finished():
 	$AnimationPlayer.play("logo_with_buttons")
+
+
+func _on_play_pressed():
+	Transition.change_scene("res://Game/Game.tscn")

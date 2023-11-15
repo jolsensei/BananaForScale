@@ -15,6 +15,10 @@ run/main_scene="res://Game/Game.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Transition="*res://Title/Transition/Transition.tscn"
+
 [display]
 
 window/size/viewport_width=192
