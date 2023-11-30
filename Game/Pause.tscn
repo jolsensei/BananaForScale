@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://4e7lf7gvaa33"]
+
+[ext_resource type="FontFile" uid="uid://2yjkm4668fmy" path="res://Resources/ButaPixel.ttf" id="1_3hcf2"]
+[ext_resource type="Script" path="res://Game/Pause.gd" id="1_47qf0"]
+[ext_resource type="Texture2D" uid="uid://ctpqp38qsopw0" path="res://Resources/options.png" id="2_uo8aj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24pvr"]
+atlas = ExtResource("2_uo8aj")
+region = Rect2(9, 0, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8le7"]
+atlas = ExtResource("2_uo8aj")
+region = Rect2(9, 23, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhs6a"]
+atlas = ExtResource("2_uo8aj")
+region = Rect2(0, 0, 7, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fncl2"]
+atlas = ExtResource("2_uo8aj")
+region = Rect2(0, 23, 7, 8)
+
+[node name="Pause" type="CanvasLayer"]
+script = ExtResource("1_47qf0")
+
+[node name="Pause" type="Control" parent="."]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 108.0
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 108.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect2" type="ColorRect" parent="Pause"]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 192.0
+offset_bottom = 60.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="RichTextLabel" parent="Pause"]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 192.0
+offset_bottom = 60.0
+theme_override_fonts/normal_font = ExtResource("1_3hcf2")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]You'll [shake rate=12 level=2][color=F44336]lose[/color][/shake] all progress if you exit.
+Are you sure you wanna leave?[/center]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Accept" type="TextureButton" parent="Pause"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 66.0
+offset_right = 117.0
+offset_bottom = 74.0
+texture_normal = SubResource("AtlasTexture_24pvr")
+texture_pressed = SubResource("AtlasTexture_w8le7")
+
+[node name="Cancel" type="TextureButton" parent="Pause"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 66.0
+offset_right = 85.0
+offset_bottom = 74.0
+texture_normal = SubResource("AtlasTexture_fhs6a")
+texture_pressed = SubResource("AtlasTexture_fncl2")
+
+[connection signal="pressed" from="Pause/Accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="Pause/Cancel" to="." method="_on_cancel_pressed"]

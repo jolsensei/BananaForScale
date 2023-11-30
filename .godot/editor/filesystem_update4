@@ -1,4 +1,3 @@
-res://Title/Title.tscn
+res://Game/Game.tscn
 res://Resources/Pattern.gdshader
-res://Title/Transition/Transition.tscn
-res://Title/Transition/Transition.gd
+res://Title/Title.tscn

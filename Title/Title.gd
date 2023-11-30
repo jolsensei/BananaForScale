@@ -5,7 +5,8 @@ var buttons_visible = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("logo")
-
+	$Volume.value = AudioManager.volume
+	AudioServer.set_bus_volume_db(0, linear_to_db(AudioManager.volume))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -13,9 +14,6 @@ func _process(_delta):
 		
 
 func _unhandled_input(event):
-
-	if event.is_action_pressed("esc"):
-		get_tree().quit()
 	
 	if event.is_action_pressed("click") and !buttons_visible:
 		$AnimationPlayer.play("show_buttons")
@@ -33,4 +31,24 @@ func tween_finished():
 
 
 func _on_play_pressed():
-	Transition.change_scene("res://Game/Game.tscn")
+	Transition.change_scene("res://Game/Game.tscn", false)
+
+
+func change_volume(value):
+	if value > 0.5:
+		$Volume/VolumeSprite.frame = 0
+	elif value != 0:
+		$Volume/VolumeSprite.frame = 1
+	else:
+		$Volume/VolumeSprite.frame = 2
+	
+	AudioManager.volume = value
+	AudioServer.set_bus_volume_db(0, linear_to_db(value))
+
+
+func close():
+	get_tree().quit()
+
+
+func _on_credits_pressed():
+	Transition.change_scene("res://Title/Credits/Credits.tscn", false)

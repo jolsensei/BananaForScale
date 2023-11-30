@@ -1,16 +1,50 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8ejt8ljpm4i2"]
+[gd_scene load_steps=28 format=3 uid="uid://c8ejt8ljpm4i2"]
 
 [ext_resource type="Script" path="res://Game/Game.gd" id="1_o81y7"]
 [ext_resource type="Texture2D" uid="uid://ubvttaoqioju" path="res://Game/Ruler/ruler_start.png" id="1_rmxok"]
 [ext_resource type="Texture2D" uid="uid://boebky8i0p1ji" path="res://Resources/pattern.png" id="2_471xc"]
 [ext_resource type="Shader" path="res://Resources/Pattern.gdshader" id="2_d17cw"]
+[ext_resource type="PackedScene" uid="uid://4e7lf7gvaa33" path="res://Game/Pause.tscn" id="2_u0a2b"]
+[ext_resource type="PackedScene" uid="uid://5k2m46jd0hr8" path="res://Game/LevelResult/LevelResult.tscn" id="3_5u85l"]
 [ext_resource type="Texture2D" uid="uid://bkqltowo1cwgt" path="res://Game/Ruler/ruler_segment.png" id="3_gvav0"]
 [ext_resource type="FontFile" uid="uid://2yjkm4668fmy" path="res://Resources/ButaPixel.ttf" id="6_d4sk2"]
+[ext_resource type="Texture2D" uid="uid://7dwqvap4hvuw" path="res://Resources/vs.png" id="7_f1kdb"]
+[ext_resource type="Texture2D" uid="uid://cucyrvmteqeu7" path="res://Resources/done.png" id="8_8qnvm"]
+[ext_resource type="Texture2D" uid="uid://b3e60fta8qe0t" path="res://Game/Items/Images/banana.png" id="8_qmvmu"]
+[ext_resource type="Texture2D" uid="uid://dk8vymmmgsjhi" path="res://Game/Items/Images/cucumber.png" id="9_7mlyu"]
+[ext_resource type="Texture2D" uid="uid://bg7r1qsexrhrp" path="res://Resources/back.png" id="10_dg0vr"]
+[ext_resource type="AudioStream" uid="uid://2nkwtbarx2yx" path="res://Audio/BGM/mainscreen_filtered.mp3" id="14_3lst3"]
+[ext_resource type="AudioStream" uid="uid://wi05d1y6yg8y" path="res://Audio/SFX/click_solo.mp3" id="15_1n34b"]
+[ext_resource type="AudioStream" uid="uid://864hfsxlek0y" path="res://Audio/SFX/menu_ok.mp3" id="16_xmxyl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ywyt"]
 shader = ExtResource("2_d17cw")
 shader_parameter/direction = Vector2(-1, -1)
 shader_parameter/speed_scale = 0.3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr76d"]
+atlas = ExtResource("10_dg0vr")
+region = Rect2(6, 6, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2fkn"]
+atlas = ExtResource("10_dg0vr")
+region = Rect2(30, 6, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqwdd"]
+atlas = ExtResource("10_dg0vr")
+region = Rect2(18, 6, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ohx4"]
+atlas = ExtResource("8_8qnvm")
+region = Rect2(6, 6, 24, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6ald"]
+atlas = ExtResource("8_8qnvm")
+region = Rect2(58, 5, 24, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h33ui"]
+atlas = ExtResource("8_8qnvm")
+region = Rect2(32, 6, 24, 7)
 
 [sub_resource type="LabelSettings" id="LabelSettings_35k0d"]
 font = ExtResource("6_d4sk2")
@@ -19,14 +53,83 @@ font_color = Color(0, 0, 0, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
+[sub_resource type="Animation" id="Animation_guje7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemA:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(60, 54)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemB:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(132, 54)]
+}
+
+[sub_resource type="Animation" id="Animation_sw16u"]
+resource_name = "item"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemA:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(60, 54), Vector2(60, 50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemB:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(132, 54), Vector2(132, 50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wv5oy"]
+_data = {
+"RESET": SubResource("Animation_guje7"),
+"item": SubResource("Animation_sw16u")
+}
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_o81y7")
+
+[node name="Pause" parent="." instance=ExtResource("2_u0a2b")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(96, 54)
 
 [node name="BG" type="ColorRect" parent="."]
 offset_right = 192.0
 offset_bottom = 108.0
 
 [node name="Pattern" type="TextureRect" parent="."]
+process_mode = 1
 texture_filter = 1
 material = SubResource("ShaderMaterial_4ywyt")
 offset_right = 192.0
@@ -34,11 +137,17 @@ offset_bottom = 108.0
 texture = ExtResource("2_471xc")
 stretch_mode = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(96, 54)
+[node name="Back" type="TextureButton" parent="."]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 14.0
+offset_bottom = 13.0
+texture_normal = SubResource("AtlasTexture_jr76d")
+texture_pressed = SubResource("AtlasTexture_m2fkn")
+texture_hover = SubResource("AtlasTexture_hqwdd")
 
 [node name="Meter" type="Node2D" parent="."]
-position = Vector2(6, 96)
+position = Vector2(12, 96)
 
 [node name="Ruler" type="Node2D" parent="Meter"]
 position = Vector2(6, 0)
@@ -52,30 +161,109 @@ offset = Vector2(3, 3)
 texture = ExtResource("3_gvav0")
 offset = Vector2(3, 3)
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Done" type="TextureButton" parent="."]
+offset_left = 84.0
+offset_top = 78.0
+offset_right = 108.0
+offset_bottom = 85.0
+texture_normal = SubResource("AtlasTexture_0ohx4")
+texture_pressed = SubResource("AtlasTexture_f6ald")
+texture_hover = SubResource("AtlasTexture_h33ui")
+stretch_mode = 3
+
+[node name="Counter" type="ColorRect" parent="."]
 offset_left = 6.0
 offset_top = 96.0
-offset_right = 24.0
+offset_right = 30.0
 offset_bottom = 102.0
-color = Color(0, 0, 0, 1)
+color = Color(0.529412, 0.380392, 0.0705882, 1)
 
-[node name="Label2" type="Label" parent="."]
-texture_filter = 1
-offset_left = 6.0
-offset_top = 84.0
-offset_right = 21.0
-offset_bottom = 95.0
-text = "000"
-label_settings = SubResource("LabelSettings_35k0d")
-horizontal_alignment = 1
-vertical_alignment = 2
+[node name="Number" type="RichTextLabel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 94.0
+offset_right = 31.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.976471, 0.807843, 0.164706, 1)
+theme_override_fonts/normal_font = ExtResource("6_d4sk2")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "000.0"
+scroll_active = false
 
 [node name="Label" type="Label" parent="."]
+visible = false
 texture_filter = 1
-offset_top = 60.0
+offset_top = 74.0
 offset_right = 192.0
-offset_bottom = 73.0
-text = "HOW MANY BANANAS?"
+offset_bottom = 85.0
+text = "Size of B using A as reference"
 label_settings = SubResource("LabelSettings_35k0d")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="VS" type="Sprite2D" parent="."]
+position = Vector2(96, 54)
+texture = ExtResource("7_f1kdb")
+
+[node name="ItemA" type="Sprite2D" parent="."]
+position = Vector2(60, 54)
+texture = ExtResource("8_qmvmu")
+
+[node name="NameA" type="RichTextLabel" parent="."]
+offset_left = 36.0
+offset_top = 12.0
+offset_right = 84.0
+offset_bottom = 36.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_d4sk2")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center][wave freq=2]banana[/wave][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="ItemB" type="Sprite2D" parent="."]
+position = Vector2(132, 54)
+texture = ExtResource("9_7mlyu")
+
+[node name="NameB" type="RichTextLabel" parent="."]
+offset_left = 108.0
+offset_top = 12.0
+offset_right = 156.0
+offset_bottom = 36.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_d4sk2")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center][wave freq=2]cucumber[/wave][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wv5oy")
+}
+
+[node name="LevelResult" parent="." instance=ExtResource("3_5u85l")]
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_3lst3")
+autoplay = true
+bus = &"BGM"
+
+[node name="ClickRuler" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_1n34b")
+bus = &"SFX"
+
+[node name="ClickButton" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_xmxyl")
+bus = &"SFX"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="Done" to="." method="on_hover"]
+[connection signal="pressed" from="Done" to="." method="_on_done_pressed"]

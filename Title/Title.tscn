@@ -1,10 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://daacdarp2surq"]
+[gd_scene load_steps=29 format=3 uid="uid://daacdarp2surq"]
 
 [ext_resource type="Script" path="res://Title/Title.gd" id="1_rx3fc"]
 [ext_resource type="Shader" path="res://Resources/Pattern.gdshader" id="2_lnvny"]
 [ext_resource type="Texture2D" uid="uid://boebky8i0p1ji" path="res://Resources/pattern.png" id="3_xcuoq"]
 [ext_resource type="Texture2D" uid="uid://bvr0rd2aqx8po" path="res://Title/logo.png" id="4_h54g3"]
 [ext_resource type="Texture2D" uid="uid://cwx4044o3f3kr" path="res://Title/Buttons/main_buttons.png" id="5_c5q1l"]
+[ext_resource type="Texture2D" uid="uid://dqeb5fugwvsr0" path="res://Resources/grabber.png" id="7_4igj7"]
+[ext_resource type="Texture2D" uid="uid://cx087k1tobpej" path="res://Resources/slider.png" id="8_5aelc"]
+[ext_resource type="Texture2D" uid="uid://dbd8jiiy6sq2c" path="res://Resources/slider_used.png" id="9_qb3e0"]
+[ext_resource type="Texture2D" uid="uid://cs2fjk8n20fku" path="res://Resources/volume.png" id="10_nd2ia"]
+[ext_resource type="AudioStream" uid="uid://0b7mum1n2byd" path="res://Audio/BGM/title.mp3" id="10_qjo3t"]
+[ext_resource type="Texture2D" uid="uid://brdu416jubmv6" path="res://Resources/close.png" id="11_cvyma"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ywyt"]
 shader = ExtResource("2_lnvny")
@@ -40,7 +46,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer2/Twitch:modulate")
+tracks/2/path = NodePath("CenterContainer3/Credits:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -52,19 +58,19 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CenterContainer3/Credits:modulate")
+tracks/3/path = NodePath("CenterContainer/Play:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CenterContainer/Play:visible")
+tracks/4/path = NodePath("CenterContainer3/Credits:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -76,7 +82,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CenterContainer2/Twitch:visible")
+tracks/5/path = NodePath("Volume:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -88,14 +94,38 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CenterContainer3/Credits:visible")
+tracks/6/path = NodePath("Volume:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Close:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Close:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_rtx3y"]
@@ -149,7 +179,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CenterContainer2/Twitch:modulate")
+tracks/1/path = NodePath("CenterContainer3/Credits:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -161,19 +191,19 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer3/Credits:modulate")
+tracks/2/path = NodePath("CenterContainer/Play:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CenterContainer/Play:visible")
+tracks/3/path = NodePath("CenterContainer3/Credits:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -185,7 +215,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CenterContainer2/Twitch:visible")
+tracks/4/path = NodePath("Volume:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -197,14 +227,38 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CenterContainer3/Credits:visible")
+tracks/5/path = NodePath("Volume:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Close:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Close:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x3kt1"]
@@ -227,18 +281,6 @@ region = Rect2(56, 5, 23, 7)
 atlas = ExtResource("5_c5q1l")
 region = Rect2(31, 6, 23, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8wkwn"]
-atlas = ExtResource("5_c5q1l")
-region = Rect2(6, 18, 33, 7)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jvffu"]
-atlas = ExtResource("5_c5q1l")
-region = Rect2(76, 17, 33, 7)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c56dg"]
-atlas = ExtResource("5_c5q1l")
-region = Rect2(41, 18, 33, 7)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bbat"]
 atlas = ExtResource("5_c5q1l")
 region = Rect2(6, 30, 36, 7)
@@ -250,6 +292,28 @@ region = Rect2(82, 29, 36, 7)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqnwm"]
 atlas = ExtResource("5_c5q1l")
 region = Rect2(44, 30, 36, 7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u4lpj"]
+texture = ExtResource("8_5aelc")
+texture_margin_top = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pgcvi"]
+texture = ExtResource("9_qb3e0")
+texture_margin_top = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l37ql"]
+atlas = ExtResource("11_cvyma")
+region = Rect2(6, 6, 7, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2ncl"]
+atlas = ExtResource("11_cvyma")
+region = Rect2(30, 6, 7, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58msp"]
+atlas = ExtResource("11_cvyma")
+region = Rect2(18, 6, 7, 8)
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_rx3fc")
@@ -280,9 +344,9 @@ libraries = {
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 offset_left = 48.0
-offset_top = 60.0
+offset_top = 66.0
 offset_right = 144.0
-offset_bottom = 67.0
+offset_bottom = 73.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -293,24 +357,11 @@ texture_normal = SubResource("AtlasTexture_lmxdl")
 texture_pressed = SubResource("AtlasTexture_5xwf3")
 texture_hover = SubResource("AtlasTexture_hqkrd")
 
-[node name="CenterContainer2" type="CenterContainer" parent="."]
-offset_left = 48.0
-offset_top = 72.0
-offset_right = 144.0
-offset_bottom = 79.0
-
-[node name="Twitch" type="TextureButton" parent="CenterContainer2"]
-visible = false
-layout_mode = 2
-texture_normal = SubResource("AtlasTexture_8wkwn")
-texture_pressed = SubResource("AtlasTexture_jvffu")
-texture_hover = SubResource("AtlasTexture_c56dg")
-
 [node name="CenterContainer3" type="CenterContainer" parent="."]
 offset_left = 48.0
-offset_top = 84.0
+offset_top = 78.0
 offset_right = 144.0
-offset_bottom = 91.0
+offset_bottom = 85.0
 
 [node name="Credits" type="TextureButton" parent="CenterContainer3"]
 visible = false
@@ -319,4 +370,47 @@ texture_normal = SubResource("AtlasTexture_1bbat")
 texture_pressed = SubResource("AtlasTexture_2fyi0")
 texture_hover = SubResource("AtlasTexture_yqnwm")
 
+[node name="Volume" type="HSlider" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 144.0
+offset_top = 6.0
+offset_right = 186.0
+offset_bottom = 12.0
+theme_override_icons/grabber = ExtResource("7_4igj7")
+theme_override_icons/grabber_highlight = ExtResource("7_4igj7")
+theme_override_icons/grabber_disabled = ExtResource("7_4igj7")
+theme_override_styles/slider = SubResource("StyleBoxTexture_u4lpj")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_pgcvi")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_pgcvi")
+max_value = 1.0
+step = 0.001
+value = 0.2
+scrollable = false
+
+[node name="VolumeSprite" type="Sprite2D" parent="Volume"]
+position = Vector2(-7, 3)
+texture = ExtResource("10_nd2ia")
+hframes = 3
+metadata/_edit_lock_ = true
+
+[node name="Close" type="TextureButton" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 13.0
+offset_bottom = 13.0
+texture_normal = SubResource("AtlasTexture_l37ql")
+texture_pressed = SubResource("AtlasTexture_s2ncl")
+texture_hover = SubResource("AtlasTexture_58msp")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_qjo3t")
+autoplay = true
+bus = &"BGM"
+
 [connection signal="pressed" from="CenterContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer3/Credits" to="." method="_on_credits_pressed"]
+[connection signal="value_changed" from="Volume" to="." method="change_volume"]
+[connection signal="pressed" from="Close" to="." method="close"]
